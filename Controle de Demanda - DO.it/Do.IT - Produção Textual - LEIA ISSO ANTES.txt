@@ -1,0 +1,24 @@
+Contole de Demanda
+Voluntário: Lindemberg e participantes do Hangout
+Brasília: 09/01/2015
+====================================================
+Para esse projeto foi usado como cliente uma empresa de desenvolvimento de software mas a solução servirá para controle de solicitações e serviços.
+===================================================
+
+
+-Descrição do Problema
+
+Empresas de software precisam controlar a qualidade de software e produtos.
+
+-Objetivo Principal
+Criar uma solução que sirva para controlar o desenvolvimento de softwares na primeira saída, postriormente a solução deverá atender qualquer setor que faça controle de atividades e qualidade de produtos e serviços.
+
+-Perspectiva do Software
+Uma empresa de desenvolvimento de software recebe  solicitação para criar uma aplicação, a solicitação é recebida e levantada pela equipe de requisitos juntamente com o analista. 
+
+O software estando com ok do cliente para o desenvolvimento, o Analista cadastra a demanda no sistema já com os requisitos levantados pela equipe competente, o gerente do sistema cadastra a demanda no sistema e repassa à equipe no sistema. Em reunião com a equipe são colocados os pontos e dado a visão geral do software.
+
+A equipe de desenvolvimento irá trabalhar e toda atualização do sistema o gerente, o analista e profissionais com o pefil habilitado para o mesmo poderão ver as atualizações. Quanto as atualizações, a solução deve usar de sistema de cores de andamento das atividades executadas, para ajuste e homologadas. Um painel mostrando toda solução deverá ser atualizado full time para as que já foram desenvolvidas mesmo pendente e realizadas.
+
+Os demais setores deverão realizar as atividades e atualizar o sistema quando terminada para que o  próximo profissional ou o anterior possa usar seus conhecimentos para dar continuidade.
+
