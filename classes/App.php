@@ -5,7 +5,7 @@ namespace classes;
 /**
  * App - Gerencia Models, Controllers e Views
  *
- * @package 
+ * @package ProjetoDoIt
  * @since 0.1
  */
 class App
