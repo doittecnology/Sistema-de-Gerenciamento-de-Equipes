@@ -1,0 +1,7 @@
+{
+    "require": {
+        "components/jquery": "dev-master",
+        "twbs/bootstrap": "3.3.*@dev",
+        "phpmailer/phpmailer": "dev-master"
+    }
+}

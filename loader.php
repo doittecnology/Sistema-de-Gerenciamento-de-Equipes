@@ -21,12 +21,10 @@ if (!defined('DEBUG') || DEBUG === false) {
 }
 
 // Funções globais
-require_once ABSPATH . '/functions/funcao-global.php';
-
-use clsses\App as StartApp;
+require_once ABSPATH . 'functions/global-functions.php';
 
 // Carrega a aplicação
-$startApp = new StartApp();
+$startApp = new \classes\App();
 
 
 

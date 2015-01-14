@@ -4,7 +4,7 @@
  * Configuração geral
  */
 // Caminho para a raiz
-define('ABSPATH', dirname(__FILE__));
+define('ABSPATH', dirname(dirname(__FILE__)).'/');
 
 // Caminho para a pasta de uploads
 define('UP_ABSPATH', ABSPATH . '/views/uploads/');
@@ -31,19 +31,19 @@ define('DB_CHARSET', 'utf8');
 define('DEBUG', true);
 
 //Constante VIEWS
-define('VIEWS', './views/');
+define('VIEWS', 'views/');
 
 //Constante INCLUDES
 define('INCLUDES', VIEWS . 'includes/');
 
 //Constante CONTROLLERS
-define('CONTROLLERS', './controllers/');
+define('CONTROLLERS', 'controllers/');
 
 //Constante MODELS
-define('MODELS', './models/');
+define('MODELS', 'models/');
 
 // Carrega o loader, que vai carregar a aplicação inteira
-require_once ABSPATH . '/loader.php';
+require_once ABSPATH.'loader.php';
 
 
 

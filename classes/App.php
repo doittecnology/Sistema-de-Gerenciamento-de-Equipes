@@ -2,6 +2,9 @@
 
 namespace classes;
 
+use controllers\HomeController;
+use controllers\ExemploController;
+
 /**
  * App - Gerencia Models, Controllers e Views
  *
@@ -69,73 +72,67 @@ class App
          */
         if (!$this->controlador) {
 
-// Adiciona o controlador padrão
-            require_once ABSPATH . '/controllers/home-controller.php';
+            // Adiciona o controlador padrão
+            require_once ABSPATH . CONTROLLERS . 'home-controller.php';
 
-// Cria o objeto do controlador "home-controller.php"
-// Este controlador deverá ter uma classe chamada HomeController
-            $this->controlador = new HomeController();
-
-// Executa o método index()
+            // Cria o objeto do controlador "home-controller.php"
+            // Este controlador deverá ter uma classe chamada HomeController
+            $this->controlador = new \controllers\HomeController();
+            $this->controlador;
+            // Executa o método index()
             $this->controlador->index();
-
-// FIM :)
             return;
         }
 
-// Se o arquivo do controlador não existir, não faremos nada
-        if (!file_exists(ABSPATH . '/controllers/' . $this->controlador . '.php')) {
-// Página não encontrada
+        // Se o arquivo do controlador não existir, não faremos nada
+        if (!file_exists(ABSPATH . CONTROLLERS . $this->controlador . '.php')) {
+            // Página não encontrada
             require_once ABSPATH . $this->not_found;
-
-// FIM :)
+            // FIM :)
             return;
         }
 
-// Inclui o arquivo do controlador
-        require_once ABSPATH . '/controllers/' . $this->controlador . '.php';
 
-// Remove caracteres inválidos do nome do controlador para gerar o nome
-// da classe. Se o arquivo chamar "news-controller.php", a classe deverá
-// se chamar NewsController.
+        // Inclui o arquivo do controlador
+        require_once ABSPATH . CONTROLLERS . $this->controlador . '.php';
+
+        // Remove caracteres inválidos do nome do controlador para gerar o nome
+        // da classe. Se o arquivo chamar "news-controller.php", a classe deverá
+        // se chamar NewsController.
         $this->controlador = preg_replace('/[^a-zA-Z]/i', '', $this->controlador);
 
-// Se a classe do controlador indicado não existir, não faremos nada
-        if (!class_exists($this->controlador)) {
-// Página não encontrada
-            require_once ABSPATH . $this->not_found;
+        // Nome da  namespace com o controller        
+        $this->controlador = '\controllers\\' . $this->controlador;
 
-// FIM :)
+        // Se a classe do controlador indicado não existir, não faremos nada
+        if (!class_exists($this->controlador)) {
+            // Página não encontrada
+            require_once ABSPATH . $this->not_found;
             return;
         } // class_exists
-// Cria o objeto da classe do controlador e envia os parâmentros
+        // Cria o objeto da classe do controlador e envia os parâmentros
         $this->controlador = new $this->controlador($this->parametros);
 
-// Remove caracteres inválidos do nome da ação (método)
+        // Remove caracteres inválidos do nome da ação (método)
         $this->acao = preg_replace('/[^a-zA-Z]/i', '', $this->acao);
 
-// Se o método indicado existir, executa o método e envia os parâmetros
+        // Se o método indicado existir, executa o método e envia os parâmetros
         if (method_exists($this->controlador, $this->acao)) {
             $this->controlador->{$this->acao}($this->parametros);
-
-// FIM :)
             return;
         } // method_exists
-// Sem ação, chamamos o método index
+        // Sem ação, chamamos o método index
         if (!$this->acao && method_exists($this->controlador, 'index')) {
+
             $this->controlador->index($this->parametros);
 
-// FIM :)
             return;
-        } // ! $this->acao 
-// Página não encontrada
+        }
+
         require_once ABSPATH . $this->not_found;
 
-// FIM :)
         return;
     }
-
-// __construct
 
     /**
      * Obtém parâmetros de $_GET['path']
@@ -149,46 +146,45 @@ class App
     public function get_url_data()
     {
 
-// Verifica se o parâmetro path foi enviado
+        // Verifica se o parâmetro path foi enviado
         if (isset($_GET['path'])) {
 
-// Captura o valor de $_GET['path']
+            // Captura o valor de $_GET['path']
             $path = $_GET['path'];
 
-// Limpa os dados
+            // Limpa os dados
             $path = rtrim($path, '/');
             $path = filter_var($path, FILTER_SANITIZE_URL);
 
-// Cria um array de parâmetros
+            // Cria um array de parâmetros
             $path = explode('/', $path);
 
-// Configura as propriedades
+            // Configura as propriedades
             $this->controlador = chk_array($path, 0);
             $this->controlador .= '-controller';
+
             $this->acao = chk_array($path, 1);
 
-// Configura os parâmetros
+            // Configura os parâmetros
             if (chk_array($path, 2)) {
                 unset($path[0]);
                 unset($path[1]);
 
-// Os parâmetros sempre virão após a ação
+                // Os parâmetros sempre virão após a ação
                 $this->parametros = array_values($path);
             }
 
 
 // DEBUG
             /*
-              echo $this->controlador . '<br>';
-              echo $this->acao . '<br>';
+              echo "Controller " . $this->controlador . '<br>';
+              echo "Ação: " . $this->acao . '<br>';
               echo '<pre>';
               print_r($this->parametros);
               echo '</pre>';
-              }
-              }
              */
-// get_url_data
         }
     }
 
+// ende get_url_data
 }
