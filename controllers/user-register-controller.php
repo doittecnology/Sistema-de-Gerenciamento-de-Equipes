@@ -66,21 +66,9 @@ class UserRegisterController extends MainController
         // Carrega o modelo para este view
         $modelo = $this->load_model('user-register/user-register-model');
 
-        /** Carrega os arquivos do view * */
-        // /views/_includes/header.php
-        require ABSPATH . '/views/_includes/header.php';
-
-        // /views/_includes/menu.php
-        require ABSPATH . '/views/_includes/menu.php';
-
-        // /views/user-register/index.php
-        require ABSPATH . '/views/user-register/user-register-view.php';
-
-        // /views/_includes/footer.php
-        require ABSPATH . '/views/_includes/footer.php';
+        // Carrega a view
+        $this->view('user-register/user-register', $parametros, $modelo);
     }
 
 // index
 }
-
-// class home
