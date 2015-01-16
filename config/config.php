@@ -4,10 +4,10 @@
  * Configuração geral
  */
 // Caminho para a raiz
-define('ABSPATH', dirname(dirname(__FILE__)).'/');
+define('ABSPATH', dirname(dirname(__DIR__)).'/');
 
 // Caminho para a pasta de uploads
-define('UP_ABSPATH', ABSPATH . '/views/uploads/');
+define('UP_ABSPATH', ABSPATH . 'views/uploads/');
 
 // URL da home
 define('HOME_URI', 'http://localhost/ProjetoDoIt/');
